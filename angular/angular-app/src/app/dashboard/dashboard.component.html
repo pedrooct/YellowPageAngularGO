@@ -1,0 +1,103 @@
+<html ng-app>
+
+<head>
+  <base href="/">
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.50.0/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+  <div style="text-align:center">
+    <h1>
+      {{ title }}!
+    </h1>
+  </div>
+  <div style="text-align:center; margin-bottom: 2%">
+    <nav>
+      <button (click)="loginPage()" class="butttonSearch">Login</button>
+    </nav>
+  </div>
+  <div style="text-align:center">
+    <form #f="ngForm" (ngSubmit)="onClick(f)">
+      Nome: <input class="inputSearch" type="text" name="nome" placeholder="Insira o nome" ngModel>
+      Em: <input class="inputSearch" type="text" name="zona" placeholder="Insira a Zona" ngModel>
+      <button class="butttonSearch" type="submit">Procurar</button>
+    </form>
+  </div>
+  <div class="slideshow">
+    <ng-container *ngIf="SlideShowservicos?.length==0">
+      <div class="scene">
+        <div class="carousel" id="mycarousel">
+          <div class="carousel__cell"><img src="../assets/yellowPage.jpg"
+              height="150" width="250" style="border-radius:10px;" /></div>
+          <div class="carousel__cell"><img src="../assets/yellowPage.jpg"
+              height="150" width="250" style="border-radius:10px;" /></div>
+          <div class="carousel__cell"><img src="../assets/yellowPage.jpg"
+              height="150" width="250" style="border-radius:10px;" /></div>
+          <div class="carousel__cell"><img src="../assets/yellowPage.jpg"
+              height="150" width="250" style="border-radius:10px;" /></div>
+          <div class="carousel__cell"><img src="../assets/yellowPage.jpg"
+              height="150" width="250" style="border-radius:10px;" /></div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="SlideShowservicos?.length >0">
+      <div class="scene">
+        <div class="carousel" id="mycarousel">
+          <ng-container *ngFor="let SlideShowservico of SlideShowservicos">
+            <ng-container *ngIf="SlideShowservico.Imagem !=''">
+              <div class="carousel__cell"><img title="{{SlideShowservico.Nome}}" alt="{{SlideShowservico.Nome}}" src="{{ SlideShowservico.Imagem }}"
+                  height="150" width="250" style="border-radius:10px;" /></div>
+            </ng-container>
+            <ng-container *ngIf="SlideShowservico.Imagem ==''">
+              <div class="carousel__cell"><img title="{{SlideShowservico.Nome}}" alt="{{SlideShowservico.Nome}}" src="../assets/yellowPage.jpg"
+                  height="150" width="250" style="border-radius:10px;" /></div>
+            </ng-container>
+          </ng-container>
+        </div>
+      </div>
+    </ng-container>
+    <div (click)="clickButtons(-72)" class="next">&#10095;</div>
+    <div (click)="clickButtons(72)" class="prev">&#10094;</div>
+  </div>
+  <div class="card">
+    <ng-container *ngIf="servicos?.length > 0">
+      <ul class="card-cell" *ngFor="let servico of servicos | paginate: { itemsPerPage: 5, currentPage: p, totalItems: total }">
+        <li>Nome: {{ servico.Nome }}</li>
+        <li>Morada: {{ servico.Morada }},{{ servico.Cidade }}</li>
+        <li>Descrição: {{ servico.Descricao }}</li>
+        <li>Info Extra :{{ servico.Info }}</li>
+        <li>Email: {{ servico.Email }}</li>
+        <li><a href="{{servico.Website}}">{{servico.Website}}</a></li>
+        <li style="float:right;"><a href="tel:{{ servico.Telefone }}"><img src="https://image.flaticon.com/icons/svg/25/25377.svg"
+              alt="ligar" height="42" width="42" /></a></li>
+        <ng-container *ngIf="servico.Imagem !='' && servico.Imagemtipo !='' ">
+          <li style="float:right;"><img src="{{ servico.Imagem }}" height="42" width="42" /></li>
+        </ng-container>
+      </ul>
+    </ng-container>
+    <ng-container *ngIf="servicos?.length == 0">
+      <ul class="card-cell">
+        <li>Sem resultados disponiveis!</li>
+        <li>Faça uma procura para obter resultados!</li>
+      </ul>
+    </ng-container>
+    <ng-container *ngIf="servicos?.length != 0">
+      <pagination-controls class="myPagination" (pageChange)="onPageChange($event)"></pagination-controls>
+    </ng-container>
+
+  </div>
+  <div class="map">
+    <ng-container *ngIf="MapCoords?.length > 0">
+      <mgl-map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="[14]" [center]="[-8.611111,41.172897]">
+        <ng-container *ngFor="let MapCoord of MapCoords">
+          <mgl-marker [lngLat]=[MapCoord.lat,MapCoord.lng]></mgl-marker>
+        </ng-container>
+      </mgl-map>
+    </ng-container>
+    <ng-container *ngIf="MapCoords?.length == 0">
+      <mgl-map [style]="'mapbox://styles/mapbox/dark-v9'" [zoom]="[14]" [center]="[-8.611111,41.172897]"></mgl-map>
+    </ng-container>
+  </div>
+</body>
+
+</html>

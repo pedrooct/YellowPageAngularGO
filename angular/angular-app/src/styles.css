@@ -1,0 +1,107 @@
+/* You can add global styles to this file, and also import other style files */
+.myPagination .ngx-pagination .current {
+  background: white;
+  font-size: 24px;
+  border-bottom: 3px solid black;
+  color: black;
+}
+.inputSearch{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 30%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+.butttonSearch{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background:black;
+  border: 0;
+  padding: 15px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.slideshow{
+  margin-top: 10%;
+}
+mgl-map{
+    height: 300px;
+    width: 50%;
+    float: right;
+    margin-bottom: 10%
+}
+.card {
+    display: table;
+    width: 50%;
+    margin:10px auto;
+    margin-top: 7%;
+    text-align:center;
+    border-spacing:15px 0;
+    table-layout:fixed;
+    font-family: 'Oxygen', sans-serif;
+    float:left;
+  }
+  .card li{
+    list-style-type: none;
+    text-align: left
+  }
+  .card-cell {
+    width: 60%;
+    display: table;
+    padding: 1em;
+    min-width:300px;
+    box-shadow: 1px 1px 10px #888888;
+    color:black;
+  }
+  .card a{
+    text-decoration:none;
+  }
+
+  .hide-white{
+    position:absolute;
+    left:-9999px;
+    overflow:hidden;
+    width:0;
+    height:0;
+  }
+  .info, .success, .warning, .error, .validation {
+    border: 1px solid;
+    margin: 10px 0px;
+    padding: 15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    letter-spacing: 1px;
+  }
+  .info {
+    color: #00529B;
+    background-color: #BDE5F8;
+    background-image: url('https://i.imgur.com/ilgqWuX.png');
+  }
+  .success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+    background-image: url('https://i.imgur.com/Q9BGTuy.png');
+  }
+  .warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+    background-image: url('https://i.imgur.com/Z8q7ww7.png');
+  }
+  .error{
+    color: #D8000C;
+    background-color: #FFBABA;
+    background-image: url('https://i.imgur.com/GnyDvKN.png');
+  }
+  .validation{
+    color: #D63301;
+    background-color: #FFCCBA;
+    background-image: url('https://i.imgur.com/GnyDvKN.png');
+  }

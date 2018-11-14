@@ -1,0 +1,11 @@
+<body>
+  <form class="formbox" #f="ngForm" (ngSubmit)="tryLogin(f)">
+    <h2>Username:</h2> <input class="inputlogin" type="text" name="email" placeholder="Insira o Username" ngModel>
+    <h2>Password:</h2> <input class="inputlogin" type="password" name="password" placeholder="Insira a password"
+      ngModel>
+    <button class="butttonlogin" type="submit">login</button>
+  </form>
+  <ng-container *ngIf="message != '' ">
+    <div class="error">{{message}}</div>
+  </ng-container>
+</body>

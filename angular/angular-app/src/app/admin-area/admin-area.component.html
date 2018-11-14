@@ -1,0 +1,131 @@
+<body>
+  <div>
+    <ng-container *ngIf="messageError != '' ">
+      <div class="error">{{messageError}}</div>
+    </ng-container>
+    <h2>Insira os dados necessários:</h2>
+    <form #f="ngForm" (ngSubmit)="insertData(f)">
+      <section style="float:left;margin-left: 5% ">
+        <h3>Nome:</h3> <input class="inputInsert" type="text" name="nome" placeholder="Insira o Nome" required ngModel>
+        <h3>Morada:</h3> <input class="inputInsert" type="text" name="morada" placeholder="Insira a Morada" required
+          ngModel>
+        <h3>Cidade:</h3> <input class="inputInsert" type="text" name="cidade" placeholder="Insira a cidade" required
+          ngModel>
+        <h3>Descrição:</h3> <textarea class="inputInsert" type="text" name="descricao" placeholder="Insira a descricao"
+          ngModel></textarea>
+        <h3>Informação:</h3> <textarea class="inputInsert" type="text" name="info" placeholder="Insira Info" ngModel></textarea>
+      </section>
+      <section class="leftSideInsert">
+        <h3>Telefone:</h3> <input class="inputInsert" type="number" name="telefone" placeholder="Insira a Telefone"
+          required ngModel>
+        <h3>Email:</h3> <input class="inputInsert" type="email" name="email" placeholder="Insira o email" ngModel>
+        <h3>Website:</h3> <input class="inputInsert" type="url" name="website" placeholder="Insira o website" ngModel>
+        <h3>Imagem:</h3> <input class="inputInsert" type="file" (change)="onFileChanged($event)" name="imagem"
+          placeholder="Insira uma imagem" accept=".png,.jpg,.jpeg" ngModel>
+        <button class="butttonInsert" type="submit">Inserir</button>
+      </section>
+    </form>
+  </div>
+  <div>
+    <div style="margin-top:5%;">
+      <ng-container *ngIf="servicos?.length > 0">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Countador pesquisas</th>
+              <th scope="col">Nome</th>
+              <th scope="col">Morada/cidade</th>
+              <th scope="col">descrição</th>
+              <th scope="col">Info Extra</th>
+              <th scope="col">email</th>
+              <th scope="col">website</th>
+              <th scope="col">telefone</th>
+              <th scope="col">Imagem</th>
+              <th scope="col">Editar</th>
+              <th scope="col">Apagar?</th>
+            </tr>
+          </thead>
+        </table>
+        <ng-container *ngFor="let servico of servicos | paginate: { itemsPerPage: 5, currentPage: p, totalItems: total}">
+          <form #f="ngForm" (ngSubmit)="editEntry(f,servico.ID)">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <textarea name="ID" class="hideArea" readonly type="text" placeholder="{{servico.ID}}" ngModel></Textarea>
+                  </td>
+                  <td>
+                    <textarea name="countpesquisa" class="hideArea" readonly type="text" placeholder="{{servico.Countpesquisa}}"
+                      ngModel></Textarea>
+                  </td>
+                  <td>
+                    <textarea name="nome" class="hideArea" type="text" placeholder="{{servico.Nome}}" ngModel></Textarea>
+                  </td>
+                  <td>
+
+                    <textarea name="morada" class="hideArea" type="text" placeholder="{{ servico.Morada }}" ngModel>,</textarea>
+                    <textarea name="cidade" class="hideArea" type="text" placeholder="{{ servico.Cidade }}" ngModel></textarea>
+                  </td>
+                  <td>
+                    <textarea name="descricao" class="hideArea" type="text" placeholder="{{ servico.Descricao }}"
+                      ngModel></textarea>
+                  </td>
+                  <td>
+                    <textarea name="info" class="hideArea" type="text" placeholder="{{ servico.Info }}" ngModel></textarea>
+                  </td>
+                  <td>
+                    <textarea name="email" class="hideArea" type="text" placeholder="{{ servico.Email }}" ngModel></textarea>
+                  </td>
+                  <td>
+                    <textarea name="website" class="hideArea" type="text" placeholder="{{ servico.Website }}" ngModel></textarea>
+                  </td>
+                  <td>
+                    <textarea name="telefone" class="hideArea" type="text" placeholder=" {{ servico.Telefone }}"
+                      ngModel></textarea>
+                  </td>
+                  <ng-container *ngIf="servico.Imagem !=''">
+                    <td><img style="margin-bottom: 10%;float:right;" src="{{ servico.Imagem }}" height="100" width="100" />
+                      <input class="inputInsert" type="file" (change)="onFileChangedEdit($event,servico.ID)" name="imagem" ngModel>
+                    </td>
+                  </ng-container>
+                  <ng-container *ngIf="servico.Imagem ==''">
+                    <td>
+                      <img style="margin-bottom: 10%;float:right;" src="../assets/yellowPage.jpg" height="100" width="100">
+                      <input type="file" (change)="onFileChangedEdit($event,servico.ID)" name="imagem" ngModel>
+                    </td>
+                  </ng-container>
+                  <td>
+                    <button type="submit"><img src="https://icon2.kisspng.com/20180204/lgw/kisspng-black-and-white-finger-font-black-checkmark-5a76aab905cd46.4232961715177263930238.jpg"
+                        width="10px" height="10px" alt="apagar?"></button>
+                  </td>
+                  <td>
+                    <button type="button" (click)="deleteEntry(servico.ID)"><img src="https://icon2.kisspng.com/20180626/aqu/kisspng-delete-key-logo-clip-art-5b3277a4485070.7900223415300340842962.jpg"
+                        width="10px" height="10px" alt="apagar?"></button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </form>
+        </ng-container>
+      </ng-container>
+    </div>
+    <ng-container *ngIf="servicos?.length == 0">
+      <ul class="card">
+        <li>Dados indisponiveis!</li>
+        <li>Insira dados para aparecer na tabela!</li>
+      </ul>
+    </ng-container>
+  </div>
+  <div class="bottomPage">
+    <ng-container *ngIf="servicos?.length != 0">
+      <pagination-controls class="myPagination" (pageChange)="onPageChange($event)"></pagination-controls>
+    </ng-container>
+    <ng-container *ngIf="messageError != '' ">
+      <div class="error">{{messageError}}</div>
+    </ng-container>
+    <ng-container *ngIf="messageSucess != '' ">
+      <div class="success">{{messageSucess}}</div>
+    </ng-container>
+  </div>
+</body>
