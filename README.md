@@ -1,7 +1,7 @@
 # Repositorio paginas_amarelas
 
 # Para comecar e necessario :   
-## - docker-compose up --build (sendo o build opcional)  
+## - docker-compose up --build (build apenas da primeira vez)  
 
 # Para desisntalar tudo basta :  
 ## - docker-compose down --rmi all --volume
