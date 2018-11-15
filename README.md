@@ -3,7 +3,7 @@
 # Para comecar e necessario :   
 ## - docker-compose up --build (build apenas da primeira vez)  
 
-# Para desisntalar tudo basta :  
+# Para desinstalar tudo basta :  
 ## - docker-compose down --rmi all --volume
 Sendo que isto desativa redes e volumes associados juntamente com containers e images.   
 
@@ -19,6 +19,7 @@ Sendo que isto desativa redes e volumes associados juntamente com containers e i
 - Para fazer o dump : pg_dump -U docker -c paginasamarelas > db.sql
 2. alterar db dump com editor favorito
 3. psql -U docker paginasamarelas < db.sql
+4. voila
 
 
 # Localhost
