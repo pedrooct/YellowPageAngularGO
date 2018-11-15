@@ -8,8 +8,9 @@
 Sendo que isto desativa redes e volumes associados juntamente com containers e images.   
 
 ## Go e recompilado a cada alteracao
+## Angular é compilado on the fly
 
-# Para recompilar o angular:  
+# Para recompilar o angular em modo produção:  
 1. Entrar no container com docker exec -it rep_paginas_amarelas_angular_1 sh
 2. ng build --prod
 3. voila
