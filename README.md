@@ -1,5 +1,9 @@
 # Repositorio paginas_amarelas
 
+# Dados login para area de admin :
+- teste@gmail.com  
+- teste  
+
 # Para comecar e necessario :   
 ## - docker-compose up --build (build apenas da primeira vez)  
 
@@ -21,6 +25,8 @@ Sendo que isto desativa redes e volumes associados juntamente com containers e i
 3. psql -U docker paginasamarelas < db.sql
 4. voila
 
+# Para aceder aos containers por SH
+docker exec -it {container name} sh   
 
 # Localhost
 - GO API-localhost:8000
