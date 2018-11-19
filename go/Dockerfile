@@ -13,7 +13,12 @@ RUN apk add --update \
 
 
 # mux para a REST api e lib/pq para a api postgres
-RUN go get github.com/gorilla/mux && go get github.com/gorilla/handlers && go get github.com/lib/pq && go get github.com/json-iterator/go && go get github.com/jmoiron/sqlx && go get github.com/pilu/fresh
+RUN go get github.com/gorilla/mux \
+    && go get github.com/gorilla/handlers \
+    && go get github.com/lib/pq \
+    && go get github.com/json-iterator/go \
+    && go get github.com/jmoiron/sqlx \
+    && go get github.com/pilu/fresh
 
 #abre porta 8000 para a comunicação
 #cria o main.go para correr no CMD

@@ -11,4 +11,5 @@ COPY ./angular/angular-app/ .
 
 #Garante que a ultima alteração será sempre atualiza em real-time
 #CMD ng serve --host 0.0.0.0
+#Resolve problema de indexação dos NODE_modules , e permite segurança na aplicação
 CMD npm install && ng serve --host 0.0.0.0
